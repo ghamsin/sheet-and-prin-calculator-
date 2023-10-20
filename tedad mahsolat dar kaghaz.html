@@ -1,0 +1,63 @@
+<html>
+  <head>
+    <title>فرم محاسبه تعداد محصولات در کاغذ</title>
+  </head>
+  <body>
+    <h1>فرم محاسبه تعداد محصولات در کاغذ</h1>
+    <form>
+      <label for="length">طول محصول (سانتی‌متر):</label>
+      <input type="number" id="length" name="length" /><br /><br />
+
+      <label for="width">عرض محصول (سانتی‌متر):</label>
+      <input type="number" id="width" name="width" /><br /><br />
+
+      <label for="paperLength">طول کاغذ (سانتی‌متر):</label>
+      <input type="number" id="paperLength" name="paperLength" /><br /><br />
+
+      <label for="paperWidth">عرض کاغذ (سانتی‌متر):</label>
+      <input type="number" id="paperWidth" name="paperWidth" /><br /><br />
+
+      <label for="productCount">تعداد محصولات:</label>
+      <input type="number" id="productCount" name="productCount" /><br /><br />
+
+      <label for="quantity">تعداد محصولات در کاغذ:</label>
+      <input type="number" id="quantity" name="quantity" readonly /><br /><br />
+
+      <label for="paperCount">تعداد کاغذهای مورد نیاز:</label>
+      <input
+        type="number"
+        id="paperCount"
+        name="paperCount"
+        readonly
+      /><br /><br />
+
+      <input
+        type="button"
+        value="محاسبه تعداد محصولات"
+        onclick="calculateQuantity()"
+      />
+    </form>
+    <script type="text/javascript">
+      function calculateQuantity() {
+        var length = parseFloat(document.getElementById("length").value);
+        var width = parseFloat(document.getElementById("width").value);
+        var paperLength = parseFloat(
+          document.getElementById("paperLength").value
+        );
+        var paperWidth = parseFloat(
+          document.getElementById("paperWidth").value
+        );
+        var productCount = parseFloat(
+          document.getElementById("productCount").value
+        );
+
+        var quantity =
+          Math.floor(paperLength / length) * Math.floor(paperWidth / width);
+        var paperCount = Math.ceil(productCount / quantity);
+
+        document.getElementById("quantity").value = quantity;
+        document.getElementById("paperCount").value = paperCount;
+      }
+    </script>
+  </body>
+</html>
